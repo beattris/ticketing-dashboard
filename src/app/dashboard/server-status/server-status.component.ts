@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-server-status',
@@ -7,10 +7,12 @@ import { Component } from '@angular/core';
   templateUrl: './server-status.component.html',
   styleUrl: './server-status.component.css',
 })
-export class ServerStatusComponent {
-  currentStatus: 'offline' | 'online' | 'unknown' = 'offline';
+export class ServerStatusComponent implements OnInit {
+  currentStatus: 'offline' | 'online' | 'unknown' = 'offline'; //this is called string literals
 
-  constructor() {
+  constructor() {}
+
+  ngOnInit() {
     setInterval(() => {
       const rnd = Math.random(); // return btw 0 - 0.999999
       if (rnd < 0.5) {
