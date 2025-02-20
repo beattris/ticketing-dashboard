@@ -1,4 +1,4 @@
-import { Component, ContentChild, ElementRef, input, ViewEncapsulation } from '@angular/core';
+import { afterNextRender, afterRender, Component, ContentChild, ElementRef, input, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-control',
@@ -15,6 +15,15 @@ import { Component, ContentChild, ElementRef, input, ViewEncapsulation } from '@
 export class ControlComponent {
   label = input.required<string>();
   @ContentChild('input') private control?: ElementRef<HTMLInputElement | HTMLTextAreaElement>;
+
+  constructor(){
+    afterRender(() => {
+      console.log('AFTER RENDER')
+    });
+    afterNextRender(() => {
+      console.log('AFTER NEXT RENDER')
+    });
+  }
 
   onClick(){
     console.log(this.control);
